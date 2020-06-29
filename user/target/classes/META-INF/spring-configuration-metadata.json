@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "com.lxf",
+      "type": "com.lxf.config.SecurityProperties",
+      "sourceType": "com.lxf.config.SecurityProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "com.lxf.browser",
+      "type": "com.lxf.config.BrowserProperties.BrowserProperties",
+      "sourceType": "com.lxf.config.SecurityProperties"
+    },
+    {
+      "name": "com.lxf.code",
+      "type": "com.lxf.config.codeProperties.CodeProperties",
+      "sourceType": "com.lxf.config.SecurityProperties"
+    }
+  ],
+  "hints": []
+}

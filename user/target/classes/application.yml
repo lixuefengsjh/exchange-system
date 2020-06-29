@@ -1,0 +1,15 @@
+server:
+  port: 19000
+spring:
+  profiles:
+    active: dev
+  cache-period: 0
+##com:
+##   lxf:
+##      browser:
+##        loginPage: /page/login/test.html
+com:
+  lxf:
+    code:
+      img:
+        charLength:  6

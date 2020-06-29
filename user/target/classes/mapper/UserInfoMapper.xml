@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxf.dao.UserInfoDao">
+                             <!--查询相关功能-->
+    <select id="findUserByName" resultType="UserInfo">
+        SELECT * FROM user_info WHERE  1=1
+            <if test="name !=null and name.trim()!=''">
+                AND  name =#{name}
+            </if>
+    </select>
+
+    <select id="findUserRoleByUserId" resultType="String">
+        SELECT role_code
+         FROM role_info role
+         LEFT JOIN  user_role_info  ur on ur.role_id=role.id
+         LEFT JOIN user_info ui on ui.id= ur.user_id
+         WHERE  ui.id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+
+CREATE TABLE `user_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户主键',
+  `name` varchar(16) NOT NULL DEFAULT ' ' COMMENT '用户名',
+  `pass_word` varchar(16) NOT NULL COMMENT '密码',
+  `age` int(11) NOT NULL DEFAULT '0' COMMENT '年龄',
+  `photo` mediumblob COMMENT '用户照片',
+   `phone` mediumblob COMMENT '用户电话号码',
+  `sex` int(11) NOT NULL DEFAULT '0' COMMENT '性别:0:男，1：女',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `org_id` int(11) DEFAULT NULL COMMENT '组织id',
+  `remark` varchar(20) NOT NULL DEFAULT ' ' COMMENT '备注'
+  PRIMARY KEY (`USERNUM`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户基本信息';
