@@ -2,6 +2,7 @@ package com.lxf.config;
 import com.lxf.security.image.ImageValidateFilter;
 import com.lxf.security.sms.SmsAuthenticationFilter;
 import com.lxf.security.sms.SmsAuthenticationProvider;
+import com.lxf.security.sms.SmsValidateFilter;
 import com.lxf.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -48,6 +49,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     private SmsAuthenticationFilter smsAuthenticationFilter;
     @Autowired
     private SmsAuthenticationProvider smsAuthenticationProvider;
+    @Autowired
+    private SmsValidateFilter smsValidateFilter;
     @Bean
    public  PersistentTokenRepository  persistentTokenRepository(){
         JdbcTokenRepositoryImpl tokenRepository=new JdbcTokenRepositoryImpl();
@@ -78,7 +81,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         smsAuthenticationFilter.setAuthenticationManager(http.getSharedObject(ProviderManager.class));
         http.authenticationProvider(smsAuthenticationProvider);
         http.addFilterAfter(smsAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
+        http.addFilterBefore(smsValidateFilter,SmsAuthenticationFilter.class);
     }
     @Override
     public void configure(AuthenticationManagerBuilder bulider) throws Exception {

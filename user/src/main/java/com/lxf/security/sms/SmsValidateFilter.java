@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.lxf.baseEntity.SystemException;
 import com.lxf.config.SecurityProperties;
 import com.lxf.security.LoginFailedHandler;
+import com.lxf.vo.dto.Code;
 import com.lxf.vo.dto.ImagesCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -77,16 +78,16 @@ public class SmsValidateFilter implements Filter, InitializingBean {
 
     private void validateCode(ServletRequestAttributes servlet) throws ServletRequestBindingException {
         String code= ServletRequestUtils.getStringParameter(servlet.getRequest(),"smsCode");
-        ImagesCode image= (ImagesCode) sessionStrategy.getAttribute(servlet,"sms");
-        if(null==image){
+        Code sms= (Code) sessionStrategy.getAttribute(servlet,"sms");
+        if(null==sms){
             throw  new SystemException("请输入验证码","user");
-        }else if(image.isExpire()){
+        }else if(sms.isExpire()){
             sessionStrategy.removeAttribute(servlet,"img");
             throw  new SystemException("验证码已过期，请重新输入","user");
         }else  if(StrUtil.isEmpty(code)){
             sessionStrategy.removeAttribute(servlet,"img");
             throw  new SystemException("验证码不能为空","user");
-        }else if(!StrUtil.equalsIgnoreCase(code,image.getCode())){
+        }else if(!StrUtil.equalsIgnoreCase(code,sms.getCode())){
             sessionStrategy.removeAttribute(servlet,"img");
             throw  new SystemException("输入的验证码不正确，请重新输入","user");
         }
@@ -104,6 +105,6 @@ public class SmsValidateFilter implements Filter, InitializingBean {
         for(String  p:ps){
             paths.add(p);
         }
-        paths.add("/login");
+        paths.add("/login/login/sms");
     }
 }
