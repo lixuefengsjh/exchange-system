@@ -1,4 +1,4 @@
-本项目预期采用springCloud+Spring Cloud Alibaba分布式架构
+本项目预期采用springCloud+Spring Cloud Alibaba分布式架构</br>
 (1)第一期将完善所有登陆相关模块功能：图片认证，短信认证，邮箱认证，第三方登陆(QQ,WECHART)
 (2)第二期在现有基础完善权限管理模块，主要是人员，角色，权限相关功能完善
 (3)第三期项目逐渐升级改造为分布式架构
